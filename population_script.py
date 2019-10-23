@@ -31,7 +31,7 @@ def populate():
 		# 2
 		{"username": "itsnaomi", "password": "pass1357",
 		 "bio": "Just passing through!", "livesIn": "Brussels", "rep": 0,
-		 "picture": urllib.request.urlretrieve("https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg", 'media/profile_images/naomi.jpg')[0]
+		 "picture": urllib.request.urlretrieve("https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Maria_Elena_Boschi_-_Festival_Economia_2016.jpg/1920px-Maria_Elena_Boschi_-_Festival_Economia_2016.jpg", 'media/profile_images/naomi.jpg')[0]
 		 },
 
 		# 3

@@ -5,7 +5,7 @@
 placeholdr is a Django web application with the objective of allowing people to browse through places of interest and create trips based on those places, with a user community that provides ratings, comments, pictures.
 
 ## Demo
-a live demo is available at https://placeholdr.pythonanywhere.com/
+a live demo is available at https://max.ardeer.co.uk/placeholdr
 
 ## External sources
 * django
@@ -38,9 +38,42 @@ a live demo is available at https://placeholdr.pythonanywhere.com/
 * selenium==3.11.0
 
 ## Installation
+
+# Ubuntu Deployment
+
+install all prerequisites
+```
+sudo apt-get update
+sudo apt-get install python3-pip apache2 libapache2-mod-wsgi-py3
+```
+
+open port 8000
+```
+sudo ufw allow 8000/tcp
+sudo ufw enable
+sudo ufw status
+```
+
+set up a virtualenv
+```
+sudo pip3 install virtualenv
+virtualenv placeholdr
+```
+
 clone this repository
 ```
-git clone https://github.com/WADPlaceholdr/Placeholdr.git
+git clone https://github.com/maxburton/placeholdr.git
+```
+
+activate the virtualenv
+```
+source myprojectenv/bin/activate
+```
+
+edit the settings file and add your IP/domain name to ALLOWED_HOSTS
+```
+sudo nano placeholdr_project/settings.py
+ALLOWED_HOSTS=['EC2_DNS_NAME']
 ```
 
 install requirements
@@ -59,8 +92,15 @@ mv placeholdr/deployment_variables.py.conf placeholdr/deployment_variables.py
 
 create database
 ```
+python manage.py makemigrations
 python manage.py migrate
 ```
+
+test that the server runs:
+```
+python manage.py runserver 0.0.0.0:8000
+```
+and go to www.url.com:8000 to see if it is running
 
 **optional** populate placeholdr with sample data
 ```
@@ -70,7 +110,7 @@ python population_script.py
 SUMMARY
 
 ```
-git clone https://github.com/WADPlaceholdr/Placeholdr.git
+git clone https://github.com/maxburton/placeholdr.git
 cd Placeholdr
 pip install –r requirements.txt --yes
 $ mv placeholdr/deployment_variables.py.conf placeholdr/deployment_variables.py

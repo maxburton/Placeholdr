@@ -31,7 +31,7 @@ def populate():
 		# 2
 		{"username": "itsnaomi", "password": "pass1357",
 		 "bio": "Just passing through!", "livesIn": "Brussels", "rep": 0,
-		 "picture": urllib.request.urlretrieve("https://s3-eu-west-1.amazonaws.com/pcs01.photocase.com/c/cllutcux/5g8xfj15/photocase5g8xfj153.jpg", 'media/profile_images/naomi.jpg')[0]
+		 "picture": urllib.request.urlretrieve("https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg", 'media/profile_images/naomi.jpg')[0]
 		 },
 
 		# 3

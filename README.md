@@ -73,7 +73,7 @@ source myprojectenv/bin/activate
 edit the settings file and add your IP/domain name to ALLOWED_HOSTS
 ```
 sudo nano placeholdr_project/settings.py
-ALLOWED_HOSTS=['EC2_DNS_NAME']
+ALLOWED_HOSTS=['EC2_DNS_NAME', 'www.url.com']
 ```
 
 install requirements
@@ -86,7 +86,7 @@ pip install –r requirements.txt --yes
 (don't use for development/test environment, deployment only)
 (default conf file uses HTTPS with HTST and all security headers strictly configured
 ```
-mv placeholdr/deployment_variables.py.conf placeholdr/deployment_variables.py
+mv placeholdr_project/deployment_variables.py.conf placeholdr_project/deployment_variables.py
 ```
 
 

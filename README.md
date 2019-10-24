@@ -94,6 +94,7 @@ create database
 ```
 python manage.py makemigrations
 python manage.py migrate
+python manage.py collectstatic
 ```
 
 test that the server runs:
@@ -101,6 +102,51 @@ test that the server runs:
 python manage.py runserver 0.0.0.0:8000
 ```
 and go to www.url.com:8000 to see if it is running
+
+create a new virtualhost file in /etc/apache2/sites-available/
+populate it with:
+```
+<VirtualHost *:80>
+    ServerAdmin webmaster@localhost
+    ServerName www.placeholdr.ardeer.co.uk
+    ServerAlias placeholdr.ardeer.co.uk
+    DocumentRoot /var/www/placeholdr
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+    Alias /robots.txt /var/www/placeholdr/static/robots.txt
+    Alias /favicon.ico /var/www/placeholdr/static/favicon.ico
+    Alias /static /var/www/placeholdr/static
+    Alias /media /var/www/placeholdr/media
+    <Directory /var/www/placeholdr/static>
+        Require all granted
+    </Directory>
+    <Directory /var/www/placeholdr/media>
+        Require all granted
+    </Directory>
+    <Directory /var/www/placeholdr>
+        Require all granted
+    </Directory>
+    <Directory /var/www/placeholdr/placeholdr_project>
+        <Files wsgi.py>
+            Require all granted
+        </Files>
+    </Directory>
+    WSGIDaemonProcess placeholdr_project python-path=/var/www/placeholdr python-home=/var/www/placeholdr/placeholdrenv
+    WSGIProcessGroup placeholdr_project
+    WSGIScriptAlias / /var/www/placeholdr/placeholdr_project/wsgi.py
+</VirtualHost>
+```
+
+Set permissions
+```
+chmod 775 db.sqlite3
+sudo chown :www-data db.sqlite3
+sudo chown -R :www-data /var/www/placeholdr
+chmod 775 /var/www/placeholdr
+chmod 775 /var/www/placeholdr/placeholdrenv
+sudo service apache2 restart
+```
+
 
 **optional** populate placeholdr with sample data
 ```

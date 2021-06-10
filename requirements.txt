@@ -1,4 +1,4 @@
-Django==1.11.7
+Django==2.2.24
 django-bootstrap4==0.0.6
 django-csp==3.3
 https://github.com/philippbosch/django-geoposition/archive/django-1.11.zip
